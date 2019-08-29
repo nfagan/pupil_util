@@ -17,7 +17,7 @@ h = plot( 1:numel(trace), trace );
 set( h, 'HitTest', 'off' );
 set( ax, 'ButtonDownFcn', @click_callback );
 set( fig, 'KeyPressFcn', @key_callback );
-set( fig, 'CloseRequestFcn', @close_request );
+% set( fig, 'CloseRequestFcn', @close_request );
 
 selected_line = [];
 should_proceed = true;
@@ -45,10 +45,10 @@ cleanup();
     set( preview_line, 'HitTest', 'off' );
   end
 
-  function close_request(varargin)
-    should_proceed = false;
-    should_delete_fig = true;
-  end
+%   function close_request(varargin)
+%     should_proceed = false;
+%     should_delete_fig = true;
+%   end
 
   function cleanup()
     set( ax, 'ButtonDownFcn', '' );
