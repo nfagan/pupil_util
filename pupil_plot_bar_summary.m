@@ -50,6 +50,7 @@ mask = params.mask_func( pupil_labels );
 fig_I = findall_or_one( pupil_labels, fig_cats, mask );
 
 for i = 1:numel(fig_I)
+  shared_utils.general.progress( i, numel(fig_I) );
   
   pl = plotlabeled.make_common();
   pl.per_panel_labels = true;

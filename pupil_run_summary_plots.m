@@ -1,4 +1,4 @@
-source_dir = '~/Desktop/subset';
+source_dir = '/Users/olgadalmonte/Dropbox/Universita Torino/Progetti/Social Touch and pupils/pupil/subset_processed';
 source_mats = shared_utils.io.findmat( source_dir, true );
 
 pupil_outs = pupil_load_processed( source_mats );

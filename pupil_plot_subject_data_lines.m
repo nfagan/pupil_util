@@ -55,6 +55,8 @@ mask = params.mask_func( pupil_outs.labels );
 fig_I = findall_or_one( pupil_outs.labels, fig_cats, mask );
 
 for i = 1:numel(fig_I)
+  shared_utils.general.progress( i, numel(fig_I) );
+  
   subset_traces = pupil_outs.traces(fig_I{i}, :);
   subset_labels = prune( pupil_outs.labels(fig_I{i}) );
 
