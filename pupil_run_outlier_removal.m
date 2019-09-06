@@ -3,7 +3,7 @@
 % Dependencies: shared_utils, categorical
 
 pupil_root = '/Users/olgadalmonte/Desktop/pupil';
-subject_dir = 'AlessandraAngiulli_14062019';
+subject_dir = 'SamanthaS_24052019';
 
 outs = pupil_load_data( fullfile(pupil_root, 'raw', subject_dir) );
 
