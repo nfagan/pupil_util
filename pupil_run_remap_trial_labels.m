@@ -1,13 +1,14 @@
 %%
 
-[~, ~, raw] = xlsread( '/Users/Nick/Downloads/Plots - summary_odm.xlsx' );
+xls_path = '/Users/Nick/Downloads/Plots - summary_odm.xlsx';
+[~, ~, raw] = xlsread( xls_path );
 
 [info_str, as_parsed, header] = pupil_parse_recoded_trial_info( raw );
 info_labs = fcat.from( info_str, header );
 
 %%
 
-do_save = false;
+do_save = true;
 
 pupil_root = '/Users/Nick/Downloads/processed_olga';
 output_dir = '/Users/Nick/Downloads/reprocessed_olga';
