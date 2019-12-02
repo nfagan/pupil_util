@@ -2,8 +2,21 @@
 
 % Dependencies: shared_utils, categorical
 
+task_type = pupil_task_type( 'wood-hand' );
+
 pupil_root = '/Users/olgadalmonte/Desktop/pupil';
 subject_dir = 'SamanthaS_24052019';
+
+switch ( task_type )
+  case pupil_task_type( 'original' )
+    label_func = @pupil_make_labels_original;
+    
+  case pupil_task_type( 'wood-hand' )
+    label_func = @pupil_make_labels_wood_hand;
+    
+  otherwise
+    error( 'Unrecognized task type "%s".', task_type );
+end
 
 outs = pupil_load_data( fullfile(pupil_root, 'raw', subject_dir) );
 

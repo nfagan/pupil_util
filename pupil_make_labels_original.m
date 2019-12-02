@@ -1,4 +1,4 @@
-function [categories, labels, blocks, trials] = pupil_make_labels(conditions, condition_header)
+function [categories, labels, blocks, trials] = pupil_make_labels_original(conditions, condition_header)
 
 % condition
 %   1 -> shoulder

@@ -1,8 +1,7 @@
-function outs = pupil_load_data(outer_dir)
+function outs = pupil_load_data(outer_dir, label_func)\
 
 [conditions, condition_header] = load_excel_data( outer_dir );
-[categories, labels, blocks, trials] = ...
-  pupil_make_labels( conditions, condition_header );
+[categories, labels, blocks, trials] = label_func( conditions, condition_header );
 
 folders = shared_utils.io.find( outer_dir, 'folders' );
 

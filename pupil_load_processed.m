@@ -9,7 +9,13 @@ for i = 1:numel(processed_mats)
   outer_folder = shared_utils.io.filenames( fileparts(processed_mats{i}) );
   
   labs = fcat.from( processed_file );
-  psth = processed_file.out_traces(2:end, :);
+  
+  if ( rows(processed_file.out_traces) == rows(labs) + 1 )
+    psth = processed_file.out_traces(2:end, :);
+  else
+    assert_ispair( processed_file.out_traces, labs );
+    psth = processed_file.out_traces;
+  end
   
   assert_ispair( psth, labs );
   addsetcat( labs, 'subject', outer_folder );
