@@ -1,4 +1,4 @@
-function outs = pupil_load_data(outer_dir, label_func)\
+function outs = pupil_load_data(outer_dir, label_func)
 
 [conditions, condition_header] = load_excel_data( outer_dir );
 [categories, labels, blocks, trials] = label_func( conditions, condition_header );
