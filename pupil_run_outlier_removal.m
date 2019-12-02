@@ -18,7 +18,7 @@ switch ( task_type )
     error( 'Unrecognized task type "%s".', task_type );
 end
 
-outs = pupil_load_data( fullfile(pupil_root, 'raw', subject_dir) );
+outs = pupil_load_data( fullfile(pupil_root, 'raw', subject_dir), label_func );
 
 %%
 
