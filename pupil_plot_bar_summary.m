@@ -29,7 +29,7 @@ end
 
 subdirs = { 'per_condition_across_subjects' };
 
-plot_bars( pupil, labels, fig_cats, xcats, gcats, pcats, params, subdirs );
+plot_bars( pupil, labels, fig_cats, xcats, gcats, pcats, task_type, params, subdirs );
 
 end
 
@@ -50,7 +50,7 @@ pupil = nanmean( pupil(:, t >= t_window(1) & t <= t_window(2)), 2 );
 
 end
 
-function plot_bars(pupil_data, pupil_labels, fig_cats, xcats, gcats, pcats, params, subdirs)
+function plot_bars(pupil_data, pupil_labels, fig_cats, xcats, gcats, pcats, task_type, params, subdirs)
 
 mask = params.mask_func( pupil_labels );
 fig_I = findall_or_one( pupil_labels, fig_cats, mask );
@@ -59,7 +59,7 @@ for i = 1:numel(fig_I)
   shared_utils.general.progress( i, numel(fig_I) );
   
   pl = plotlabeled.make_common();
-  pl.per_panel_labels = false;
+  pl.per_panel_labels = strcmp( task_type, pupil_task_type('original') );
   
   subset = pupil_data(fig_I{i});
   subset_labels = prune( pupil_labels(fig_I{i}) );
