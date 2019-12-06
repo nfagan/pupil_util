@@ -4,22 +4,28 @@ defaults = pupil_get_common_plot_defaults();
 defaults.normalize = true;
 defaults.base_t = [0, 2e3];
 defaults.target_t = [2e3, 12e3];
+defaults.task_type = pupil_task_type( 'original' );
 
 params = shared_utils.general.parsestruct( defaults, varargin );
+task_type = pupil_task_type( params.task_type );
 
 target_pupil = get_target_pupil( pupil_outs, params );
 
-plot_per_block_per_condition( target_pupil, pupil_outs.labels, params );
+plot_per_block_per_condition( target_pupil, pupil_outs.labels, task_type, params );
 
 end
 
-function plot_per_block_per_condition(pupil, labels, params)
+function plot_per_block_per_condition(pupil, labels, task_type, params)
 
 fig_cats = {};
 
 xcats = { 'condition' };
 gcats = { 'touch-type' };
 pcats = { 'block' };
+
+if ( strcmp(task_type, pupil_task_type('wood-hand')) )
+  xcats{end+1} = 'hand-type';
+end
 
 subdirs = { 'per_condition_across_subjects' };
 
@@ -53,7 +59,7 @@ for i = 1:numel(fig_I)
   shared_utils.general.progress( i, numel(fig_I) );
   
   pl = plotlabeled.make_common();
-  pl.per_panel_labels = true;
+  pl.per_panel_labels = false;
   
   subset = pupil_data(fig_I{i});
   subset_labels = prune( pupil_labels(fig_I{i}) );
