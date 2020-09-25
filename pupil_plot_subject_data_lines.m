@@ -3,6 +3,7 @@ function pupil_plot_subject_data_lines(pupil_outs, varargin)
 defaults = pupil_get_common_plot_defaults();
 defaults.plot_funcs = all_plot_funcs();
 defaults.task_type = pupil_task_type( 'original' );
+defaults.per_trial_number = false;
 
 params = shared_utils.general.parsestruct( defaults, varargin );
 plot_funcs = cellstr( params.plot_funcs );
@@ -17,11 +18,15 @@ end
 function plot_conditions_across_subjects(pupil_outs, task_type, params)
 
 fig_cats = {};
-gcats = { 'touch-type', 'condition' };
-pcats = { 'block' };
+gcats = { 'touch-type', 'hand-type' };
+pcats = {};
 
 if ( strcmp(task_type, pupil_task_type('wood-hand')) )
-  gcats{end+1} = 'hand-type';
+  pcats{end+1} = 'condition';
+end
+
+if ( params.per_trial_number )
+  gcats{end+1} = 'trial';
 end
 
 subdirs = { 'per_condition_across_subjects' };
@@ -38,6 +43,10 @@ pcats = { 'block', 'subject' };
 
 if ( strcmp(task_type, pupil_task_type('wood-hand')) )
   gcats{end+1} = 'hand-type';
+end
+
+if ( params.per_trial_number )
+  gcats{end+1} = 'trial';
 end
 
 subdirs = { 'per_condition_per_subject' };

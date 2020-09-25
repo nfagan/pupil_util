@@ -30,9 +30,14 @@ for i = 1:numel(folders)
   all_events = [ all_events; events ];
   all_samples{i} = samples;
   
-  block_id = str2double( folder_names{i}(3:end) );
-  block_ind = blocks == block_id;
+  folder_name = folder_names{i};
+  folder_name = folder_name(isstrprop(folder_name, 'digit'));
   
+  block_id = str2double( folder_name );
+  assert( ~any(isnan(block_id)), 'Failed to parse block number for: "%s".' ...
+    , folder_names{i} );
+  
+  block_ind = blocks == block_id;
   tmp_labels = cell( numel(events{1}), numel(categories) );
   
   for j = 1:numel(events{1})
@@ -69,5 +74,6 @@ assert( numel(excel_file) == 1, 'Expected 1 excel file in "%s"; got %d.' ...
   , outer_dir, numel(excel_file) );
 
 [conditions, header] = xlsread( excel_file{1} );
+header = header(1, :);
 
 end
